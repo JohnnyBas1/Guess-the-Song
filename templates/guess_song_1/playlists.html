@@ -2,8 +2,38 @@
 
 {% block body %}
 
-{% for playlist in playlists.items %}
-    {{ playlist.name}}<br>
-{% endfor   %}
+
+    
+<div class="container"> 
+<div class="row">
+
+    {% for playlist in playlists.items %}
+
+            {% if forloop.counter0|divisibleby:3 %}
+
+        </div>
+        
+        <div class="row">
+
+            {% endif %}
+        <div class="col">
+                <div class="card" style="width:150px">
+                    <div class="card-body">
+                        <img class="card-img-top" src="{{ playlist.images.0.url}}" alt="Card image">
+                        <h5 class="card-title">{{ playlist.name}}  </h4>
+                        <a href="#" class="btn btn-primary btn-xm">Start game!</a>
+                    </div>
+                </div>
+        </div>
+        
+    {% endfor %}
+
+</div>
+</div>
+
+
+
+
+
 
 {% endblock %}

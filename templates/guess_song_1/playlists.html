@@ -1,0 +1,9 @@
+{% extends "guess_song_1/layout.html" %}
+
+{% block body %}
+
+{% for playlist in playlists.items %}
+    {{ playlist.name}}<br>
+{% endfor   %}
+
+{% endblock %}

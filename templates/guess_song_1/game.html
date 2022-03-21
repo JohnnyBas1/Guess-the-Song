@@ -1,0 +1,56 @@
+{% extends "guess_song_1/layout.html" %}
+
+{% block body %}
+
+<h1>
+    {{playlist.name}}!
+    Wassup
+</h1>
+<button id="togglePlay">Toggle Play</button>
+<script src="https://sdk.scdn.co/spotify-player.js"></script>
+<script>
+    window.onSpotifyWebPlaybackSDKReady = () => {
+        const token = 'BQBbw_q_SNJjNFEWPjKI__F3jwulcCpfaDF8tvW3REf6SHm3gU2BQeiGdL66s168BHawne42HIm8hTIwdweMArsv4EfWhXeOU2SL5d37hypdmW7X_o0zbIcc0K9YQbE4lnQpA-DtZl3CPawWvE0pJgqyCc1uj7TVVV9jtA-OX_hPrvhFT5gEtgs';
+        const player = new Spotify.Player({
+            name: 'Web Playback SDK Quick Start Player',
+            getOAuthToken: cb => { cb(token); },
+            volume: 0.5
+        });
+
+        // Ready
+        player.addListener('ready', ({ device_id }) => {
+            console.log('Ready with Device ID', device_id);
+        });
+
+        // Not Ready
+        player.addListener('not_ready', ({ device_id }) => {
+            console.log('Device ID has gone offline', device_id);
+        });
+
+        player.addListener('initialization_error', ({ message }) => {
+            console.error(message);
+        });
+
+        player.addListener('authentication_error', ({ message }) => {
+            console.error(message);
+        });
+
+        player.addListener('account_error', ({ message }) => {
+            console.error(message);
+        });
+
+        document.getElementById("togglePlay").addEventListener("click",function() {
+            player.togglePlay();
+        });
+
+
+        player.connect();
+    }
+</script>
+
+
+
+
+
+
+{% endblock %}

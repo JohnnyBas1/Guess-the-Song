@@ -1,39 +1,51 @@
 {% extends "guess_song_1/layout.html" %}
 
+{% block head %}
+
+<script>
+    function sendPlaylist(what){
+        const myForm = document.getElementById("playlist--"+ what)
+        
+    }
+</script>
+
+{% endblock %}
+
+
 {% block body %}
-
-
     
 <div class="container"> 
-<div class="row">
+    <div class="row">
 
-    {% for playlist in playlists.items %}
+        {% for playlist in playlists.items %}
 
-            {% if forloop.counter0|divisibleby:3 %}
+                {% if forloop.counter0|divisibleby:3 %}
 
-        </div>
-        
-        <div class="row">
+    </div>
+            
+    <div class="row">
 
-            {% endif %}
-        <div class="col">
-                <div class="card" style="width:150px">
-                    <div class="card-body">
-                        <img class="card-img-top" src="{{ playlist.images.0.url}}" alt="Card image">
-                        <h5 class="card-title">{{ playlist.name}}  </h4>
-                        <a href="#" class="btn btn-primary btn-xm">Start game!</a>
+                {% endif %}
+            <div class="col">
+                    <div class="card" style="width:150px">
+                        <div class="card-body">
+                            <img class="card-img-top" src="{{ playlist.images.0.url}}" alt="Card image">
+                            <h5 class="card-title">{{ playlist.name}} </h4>
+                            <form id="playlist--{{forloop.counter0}}" action = "{% url 'game' %}" method = "POST">
+                                <input type="hidden" id = "playlist-{{forloop.counter0}}" name = "playlist" value ="{{forloop.counter0}}">
+                                <input type = 'submit' value="{{ playlist.name}}"> {%csrf_token %}
+                                <!-- <a id = "playlist-{{forloop.counter0}}"   onclick="passPlaylist('{{playlist.id}}')" class="btn btn-primary btn-xm">Start game!</a> -->
+                            </form>
+                            
+                           
+                        </div>
                     </div>
-                </div>
-        </div>
-        
-    {% endfor %}
+            </div>
+            
+        {% endfor %}
 
+    </div>
 </div>
-</div>
-
-
-
-
 
 
 {% endblock %}

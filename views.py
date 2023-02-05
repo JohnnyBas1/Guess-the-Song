@@ -17,7 +17,7 @@ def index(request):
         request=request)
 
     auth_manager = spotipy.oauth2.SpotifyOAuth(
-        client_id="b4500f1dc0064d498aeabc56c140ead0", client_secret="c3b0d3f0e2864dce93deeb5def7f4e9c", redirect_uri="http://localhost:8000/guess_song_1/", scope=scope, cache_handler=cache_handler)
+        client_id="123", client_secret="123", redirect_uri="http://localhost:8000/guess_song_1/", scope=scope, cache_handler=cache_handler)
 
     # code is the return verified authentication from spotify server!!! you're getting this from the url and then erasing it by doing redirect(index)
     # so that the end user does not see the token.
